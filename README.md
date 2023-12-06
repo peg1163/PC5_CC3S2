@@ -20,3 +20,46 @@ Como vemos nos muestra el mensaje y las tablas de las peliculas para seleccionar
 
 
 * En las actividades relacionados a Rails Avanzado, si tenemos el siguiente ejemplo de código que muestra cómo se integra OmniAuth en una aplicación Rails:
+```
+class SessionsController < ApplicationController
+ 	   def create
+    	         @user = User.find_or_create_from_auth_hash(auth_hash)
+    	         self.current_user = @user
+    	         redirect_to '/'
+                   end
+          	  protected
+          	  def auth_hash
+            		request.env['omniauth.auth']
+                 end
+              end
+```
+
+
+## Pregunta:   Utilizando historias de usuario y Cucumber 
+
+Utilizaremos el archivo dado en el examen para esta pregunta , comenzaremos ejecutando el servidor :  
+
+![imagen](https://github.com/peg1163/PC5_CC3S2/assets/92898224/445bb7ab-62fa-4622-8fa0-50092c18630b)
+
+vemos que se ejecuta correctamente , tambien podemos ver algunas peliculas en la tabla , pasaremos al siguiente paso , ejecutar bundle exec cucumber :
+
+![imagen](https://github.com/peg1163/PC5_CC3S2/assets/92898224/f8b84a63-08c4-406b-bd77-81118161a5f6)
+
+Vemos que los escenarios no logran pasar la "prueba"
+Comenzaremos quitando los pendientes en el codigo , cosa que al ejecutarlo  nos da lo siguiente :
+
+![imagen](https://github.com/peg1163/PC5_CC3S2/assets/92898224/da60c3ad-fca7-4944-a575-942166f7e4e2)
+
+Ya quitados los pendientes , vemos que hay algunos errores , por ejemplo el primer error que nos encontramos es que no detecta las tablas que ingresamos , esto es porque no hemos definido una tabla al comenzar la prueba , cambiamos un poco el cosigo : 
+
+![imagen](https://github.com/peg1163/PC5_CC3S2/assets/92898224/42312630-bf4e-4562-82d4-4fde4b270c48)
+
+Y ejecutamos nuevamente el  codigo :
+
+![imagen](https://github.com/peg1163/PC5_CC3S2/assets/92898224/fc76f43e-05a1-40fe-b83f-87341fd75331)
+
+Observamos que los errores con el numero de filas ha desaparecido , pero uno nuevo empieza ,el cual nos impide pasar todas las pruebas .
+
+
+
+
